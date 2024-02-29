@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Укажите адрес доставки</title>
+</head>
+<body>
+<h1>Оформление формления заказа</h1>
+
+<form method="post" th:object="${order}">
+    <h1>Введите адрес доставки и платежные данные</h1>
+    <h3>Твои шавухи здесь:</h3>
+    <a id="another" th:href="@{/prepare}">Собрать другую шавуху</a>
+    <ul>
+        <li th:each="taco : ${order.getShawarmaList}">
+            <span th:text="${taco.name}">taco name</span>
+        </li>
+    </ul>
+
+    <h3>Доставить шедевр сюда...</h3>
+    <label for="deliveryName">Name: </label>
+    <input th:field="*{deliveryName}" type="text"/>
+    </br>
+
+    <label for="deliveryStreet">Street adress: </label>
+    <input th:field="*{deliveryStreet}" type="text"/>
+    </br>
+
+    <label for="deliveryCity">City: </label>
+    <input th:field="*{deliveryCity}" type="text"/>
+    </br>
+
+    <label for="deliveryZip">Zip code: </label>
+    <input th:field="*{deliveryZip}" type="text"/>
+    </br>
+
+    <h3>Платежные данные...</h3>
+    <label for="ccNumber">Credit Card #: </label>
+    <input th:field="*{ccNumber}" type="text"/>
+    </br>
+
+    <label for="ccExpiration">Expiration: </label>
+    <input th:field="*{ccExpiration}" type="text"/>
+    </br>
+
+    <label for="ccCVV">CVV: </label>
+    <input th:field="*{ccCVV}" type="text"/>
+    </br>
+    <input type="submit" value="Submit Order">
+</form>
+</body>
+</html>
