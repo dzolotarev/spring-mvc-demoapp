@@ -1,9 +1,11 @@
 package ru.dzmakats.springmvcdemoapp.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import ru.dzmakats.springmvcdemoapp.entity.Ingredient;
 import ru.dzmakats.springmvcdemoapp.entity.Order;
@@ -54,8 +56,12 @@ public class PrepareController {
     }
 
     @PostMapping
-    public String makeOrder(Shawarma shawarma,
+    public String makeOrder(@Valid Shawarma shawarma,
+                            Errors errors,
                             @ModelAttribute Order order) {
+        if (errors.hasErrors()) {
+            return "prepare";
+        }
         order.addShawarma(shawarma);
         log.info("Prepare shawarma: {}", shawarma);
         return "redirect:/order";
