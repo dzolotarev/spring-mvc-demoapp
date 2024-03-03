@@ -5,10 +5,13 @@
     <title>Укажите адрес доставки</title>
 </head>
 <body>
-<h1>Оформление формления заказа</h1>
+<h1>Оформление заказа</h1>
 
 <form method="post" th:object="${order}">
     <h1>Введите адрес доставки и платежные данные</h1>
+
+    <img th:src="@{/images/shawarma_order.jpg}">
+
     <h3>Твои шавухи здесь:</h3>
     <a id="another" th:href="@{/prepare}">Собрать другую шавуху</a>
     <ul>
