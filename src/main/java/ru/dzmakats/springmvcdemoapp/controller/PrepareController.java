@@ -1,6 +1,7 @@
 package ru.dzmakats.springmvcdemoapp.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ import java.util.List;
  * Created by Denis Zolotarev on 29.02.2024
  */
 
+@Slf4j
 @Controller
 @RequestMapping("/prepare")
 @RequiredArgsConstructor
@@ -55,10 +57,7 @@ public class PrepareController {
     public String makeOrder(Shawarma shawarma,
                             @ModelAttribute Order order) {
         order.addShawarma(shawarma);
-
-        System.out.println(shawarma);
-        System.out.println(order);
-
-         return "redirect:/order";
+        log.info("Prepare shawarma: {}", shawarma);
+        return "redirect:/order";
     }
 }
