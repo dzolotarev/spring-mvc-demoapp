@@ -55,6 +55,12 @@ public class PrepareController {
         return "prepare";
     }
 
+    @GetMapping("/json")
+    public String getIngredients(Model model) {
+        ingredientsRepository.findAll().forEach(model::addAttribute);
+        return "getJsonIngr";
+    }
+
     @PostMapping
     public String makeOrder(@Valid Shawarma shawarma,
                             Errors errors,
